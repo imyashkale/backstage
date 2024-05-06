@@ -30,7 +30,7 @@ jobs:
         run: yarn tsc
       
       - name: Run yarn build
-        run: yarn build
+        run: yarn build:bakend
 
       - name: Set up QEMU 🛠️
         uses: docker/setup-qemu-action@v3
@@ -44,13 +44,5 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and Push Docker 🚀
-        uses: docker/build-push-action@v5
-        with:
-          push: true
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          file: packages/backend/Dockerfile
-          tags: imyashkale/the-idp
-          context: .
-          platforms: linux/amd64,linux/arm64
+      - name: Build Image
+        run: yarn build-image
