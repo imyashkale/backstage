@@ -28,11 +28,9 @@ jobs:
 
       - name: Run yarn tsc
         run: yarn tsc
-
-      - name: Run yarn Build
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: build:backend
+      
+      - name: Run yarn build
+        run: yarn build
 
       - name: Set up QEMU 🛠️
         uses: docker/setup-qemu-action@v3
