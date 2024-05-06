@@ -7,7 +7,7 @@ on:
       
 env:
   environment: production
-
+  NODE_OPTIONS: --no-node-snapshot
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -15,7 +15,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
 
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: yarn install && yarn tsc && yarn build:backend
+          
       - name: Set up QEMU 🛠️
         uses: docker/setup-qemu-action@v3
 

@@ -3,9 +3,9 @@
 #
 # Before building this image, be sure to have run the following commands in the repo root:
 #
-# yarn install
-# yarn tsc
-# yarn build:backend
+    # yarn install
+    # yarn tsc
+    # yarn build:backend
 #
 # Once the commands have been run, you can build the image using `yarn build-image`
 
