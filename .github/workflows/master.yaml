@@ -48,6 +48,8 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           file: packages/backend/Dockerfile
           tags: imyashkale/the-idp
           context: .
