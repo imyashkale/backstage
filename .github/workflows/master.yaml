@@ -22,19 +22,16 @@ jobs:
           node-version: 20.x
 
       - name: Run install
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install
+        run: yarn install
 
       - name: Run yarn tsc
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: tsc
+        run: yarn tsc
 
       - name: Run yarn Build
         uses: borales/actions-yarn@v4
         with:
           cmd: build:backend
+
       - name: Set up QEMU 🛠️
         uses: docker/setup-qemu-action@v3
 
