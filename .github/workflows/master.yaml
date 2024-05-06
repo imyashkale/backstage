@@ -31,4 +31,5 @@ jobs:
           push: true
           file: packages/backend/Dockerfile
           tags: imyashkale/the-idp
+          context: .
           platforms: linux/amd64,linux/arm64
