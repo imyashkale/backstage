@@ -27,6 +27,9 @@ backend.add(
   import('@backstage/plugin-catalog-backend-module-scaffolder-entity-model'),
 );
 
+// GitHub oAuth
+backend.add(import('@backstage/plugin-auth-backend-module-github-provider'));
+
 // permission plugin
 backend.add(import('@backstage/plugin-permission-backend/alpha'));
 backend.add(
