@@ -23,18 +23,6 @@ jobs:
           node-version: 18
           cache: 'yarn'
 
-      - name: Run install
-        run: yarn install
-
-      - name: Run yarn tsc
-        run: yarn tsc
-      
-      - name: Run yarn build
-        run: yarn build:bakend
-
-      - name: Set up QEMU 🛠️
-        uses: docker/setup-qemu-action@v3
-
       - name: Set up Docker Buildx 🛠️
         uses: docker/setup-buildx-action@v3.3.0
 
