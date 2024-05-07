@@ -8,6 +8,7 @@ on:
 env:
   environment: production
   NODE_OPTIONS: --no-node-snapshot
+
 jobs:
   Deploy:
     
@@ -30,7 +31,7 @@ jobs:
         run: yarn tsc
       
       - name: Build Project
-        run: yarn build:backend --config app-config.yaml --config app-config.production.yaml
+        run: yarn build:backend ../../app-config.production.yaml
 
       - name: Set up QEMU 🛠️
         uses: docker/setup-qemu-action@v3
