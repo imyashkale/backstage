@@ -23,14 +23,14 @@ jobs:
           node-version: 20.12.2
           cache: 'yarn'
 
-      - name: Run install
+      - name: Install YARN Packages
         run: yarn install
 
-      - name: Run yarn tsc
+      - name: Run YARN TSC
         run: yarn tsc
       
-      - name: Run yarn build
-        run: yarn build:backend
+      - name: Build Project
+        run: yarn build:backend --config app-config.production.yaml
 
       - name: Set up QEMU 🛠️
         uses: docker/setup-qemu-action@v3
@@ -71,10 +71,10 @@ jobs:
           context: .
           platforms: linux/amd64
           
-      - name: Commit version increment
+      - name: Commit Version Increment.
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git add version.txt
-          git commit -m "Incremented version to $new_version"
+          git commit -m "Incremented version to ${{ steps.version.outputs.new_version }}"
           git push
