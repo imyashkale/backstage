@@ -9,7 +9,7 @@ env:
   environment: production
   NODE_OPTIONS: --no-node-snapshot
 jobs:
-  deploy:
+  Deploy:
     
     runs-on: ubuntu-latest
 
@@ -53,4 +53,4 @@ jobs:
           file: packages/backend/Dockerfile
           tags: imyashkale/the-idp
           context: .
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
