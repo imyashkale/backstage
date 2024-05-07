@@ -44,6 +44,22 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Read and Update Version
+        id: version
+        run: | 
+          current_version=$(<version.txt)
+          major_version=$(echo "$current_version" | cut -d '.' -f 1)
+          minor_version=$(echo "$current_version" | cut -d '.' -f 2)
+          new_minor_version=$((minor_version + 1))
+          new_version="$major_version.$new_minor_version"
+          echo "::set-output name=new_version::$new_version"
+
+      - name: Increment version and update file
+        run: |
+          new_version="${{ steps.version.outputs.new_version }}"
+          echo "$new_version" > version.txt
+          echo "New version is $new_version"
+
       - name: Build and Push Docker 🚀
         uses: docker/build-push-action@v5
         with:
@@ -51,6 +67,14 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           file: packages/backend/Dockerfile
-          tags: imyashkale/the-idp
+          tags: imyashkale/the-idp:${{ steps.version.outputs.new_version }}
           context: .
           platforms: linux/amd64
+          
+      - name: Commit version increment
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add version.txt
+          git commit -m "Incremented version to $new_version"
+          git push
