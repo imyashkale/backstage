@@ -68,7 +68,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           file: packages/backend/Dockerfile
-          tags: imyashkale/the-idp:${{ steps.version.outputs.new_version }}
+          tags: imyashkale/backstage:${{ steps.version.outputs.new_version }}
           context: .
           platforms: linux/amd64
           
