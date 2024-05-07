@@ -1,14 +1,3 @@
-# This dockerfile builds an image for the backend package.
-# It should be executed with the root of the repo as docker context.
-#
-# Before building this image, be sure to have run the following commands in the repo root:
-#
-# yarn install
-# yarn tsc
-# yarn build:backend
-#
-# Once the commands have been run, you can build the image using `yarn build-image`
-
 FROM --platform=linux/amd64 node:20
 
 # Install isolate-vm dependencies, these are needed by the @backstage/plugin-scaffolder-backend.

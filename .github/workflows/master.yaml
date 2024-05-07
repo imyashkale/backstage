@@ -30,7 +30,7 @@ jobs:
         run: yarn tsc
       
       - name: Run yarn build
-        run: yarn build:bakend
+        run: yarn build:backend
 
       - name: Set up QEMU 🛠️
         uses: docker/setup-qemu-action@v3
