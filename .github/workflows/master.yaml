@@ -80,16 +80,15 @@ jobs:
           git commit -m "Incremented version to ${{ steps.version.outputs.new_version }}"
           git push
 
+      - name: Cloning the ArgoCD Application Repo
+        uses: actions/checkout@v4
+        with: 
+          repository: https://github.com/imyashkale/argocd-applications.git
+
       - name: Update ArgoCD Backstage Application
         run: |
           set -e
           
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-
-          git clone https://github.com/imyashkale/argocd-applications.git
-          cd argocd-applications/backstage/app
-
           yq e '.spec.template.spec.containers[0].image |= "imyashkale/backstage:${{ steps.version.outputs.new_version }}"' -i app.yaml
 
           git add app.yaml
