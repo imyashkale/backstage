@@ -89,6 +89,8 @@ jobs:
         run: |
           set -e
           
+          cd argocd-applications
+
           yq e '.spec.template.spec.containers[0].image |= "imyashkale/backstage:${{ steps.version.outputs.new_version }}"' -i app.yaml
 
           git add app.yaml
