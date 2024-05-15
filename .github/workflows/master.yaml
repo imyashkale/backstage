@@ -83,7 +83,7 @@ jobs:
       - name: Cloning the ArgoCD Application Repo
         uses: actions/checkout@v4
         with: 
-          repository: https://github.com/imyashkale/argocd-applications.git
+          repository: imyashkale/argocd-applications
 
       - name: Update ArgoCD Backstage Application
         run: |
