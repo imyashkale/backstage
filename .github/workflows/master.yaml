@@ -85,6 +85,7 @@ jobs:
         with: 
           repository: imyashkale/argocd-applications
           path: argocd-applications
+          token: ${{ secrets.ARGOCD_VERSIONS_UPDATE }}
 
       - name: Update ArgoCD Backstage Application
         run: |
