@@ -94,7 +94,7 @@ jobs:
 
           yq e '.spec.template.spec.containers[0].image |= "imyashkale/backstage:${{ steps.version.outputs.new_version }}"' -i ./backstage/app/app.yaml
 
-          git add app.yaml
+          git add ./backstage/app/app.yaml
           git commit -m "Backstage Image Upgraded to ${{ steps.version.outputs.new_version }}"
           git push
           
