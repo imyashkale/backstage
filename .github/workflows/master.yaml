@@ -87,15 +87,14 @@ jobs:
           path: argocd-applications
           token: ${{ secrets.ARGOCD_VERSIONS_UPDATE }}
 
-      - name: Update ArgoCD Backstage Application
+      - name: Backstage Image Update
         run: |
           set -e
-          
           cd argocd-applications
-
+          
           yq e '.spec.template.spec.containers[0].image |= "imyashkale/backstage:${{ steps.version.outputs.new_version }}"' -i ./backstage/app/app.yaml
 
           git add ./backstage/app/app.yaml
-          git commit -m "Backstage Image Upgraded to ${{ steps.version.outputs.new_version }}"
+          git commit -m "Backstage image upgraded to ${{ steps.version.outputs.new_version }}"
           git push
           
