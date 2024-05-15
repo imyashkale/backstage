@@ -1,12 +1,7 @@
 app:
   baseUrl: https://backstage.imyashkale.com
 
-permission:
-  enabled: true
-
 backend:
-  permission:
-    enabled: true
   baseUrl: https://backstage.imyashkale.com
   listen:
     port: 7007
@@ -17,9 +12,14 @@ backend:
     origin: https://backstage.imyashkale.com
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
+
   auth:
-    keys:
-      - secret: ${BACKEND_SECRET}
+    externalAccess:
+      - type: legacy
+        options:
+          secret: ${BACKEND_SECRET}
+          subject: backedn-secret
+
   database:
     client: pg
     connection:
@@ -27,6 +27,9 @@ backend:
       port: ${POSTGRES_SERVICE_PORT}
       user: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
+
+permission:
+  enabled: true
   
 auth:
   environment: production
@@ -62,4 +65,9 @@ catalog:
       target: https://github.com/imyashkale/backstage-templates/blob/master/access-control/entities.yaml
       rules:
         - allow: [User, Group]
+
+    - type: url
+      target: https://github.com/imyashkale/backstage-templates/blob/master/templates/template.yaml
+      rules:
+        - allow: [Template]
 
